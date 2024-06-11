@@ -1,0 +1,53 @@
+import java.util.Scanner;
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int maxAttempts = 5; // Change this to adjust the number of attempts
+        boolean playAgain = true;
+
+        while (playAgain) {
+            // Generate random number
+            int randomNumber = (int) (Math.random() * 100) + 1; // Range 1 to 100
+
+            // Initialize variables
+            int guessCount = 0;
+            boolean guessedCorrect = false;
+
+            System.out.println("Welcome to the Guessing Game!");
+
+            while (!guessedCorrect && guessCount < maxAttempts) {
+                System.out.print("Guess a number between 1 and 100 (Attempts: " + guessCount + "): ");
+                int userGuess = scanner.nextInt();
+
+                guessCount++;
+
+                if (userGuess == randomNumber) {
+                    guessedCorrect = true;
+                    System.out.println("Congratulations! You guessed the number in " + guessCount + " attempts.");
+                } else if (userGuess < randomNumber) {
+                    System.out.println("Too low. Try again.");
+                } else {
+                    System.out.println("Too high. Try again.");
+                }
+            }
+
+            if (!guessedCorrect) {
+                System.out.println("You ran out of attempts. The number was " + randomNumber);
+            }
+            if(guessCount>3){
+        System.out.print("Your score is approximately higher than 60%  ");
+        }else{
+            System.out.print("Your score is approximately lower than 60% ");
+        }
+
+            // Ask to play again
+            System.out.print("Do you want to play again? (yes/no): ");
+            char choice = scanner.next().charAt(0);
+            playAgain = choice == 'y' || choice == 'Y';
+            
+        }
+        System.out.println("Thankyou for playing!");
+        scanner.close();
+    }
+}
